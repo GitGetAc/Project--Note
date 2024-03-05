@@ -80,13 +80,11 @@ begin
        //Then, if there is still any items in the TreeView, select the item at position 'index'
        if index >= 0 then
           TreeView1.Items[index].Selected := True;
-       //And set the fokus back to TreeView
+       //And set the focus back to TreeView
      end;
      TreeView1.SetFocus;
   end;
 end;
-{ #todo -oKihon -cUIEvent : 4. video jøn
-A gombok megvannak, csak meg kell irni az eventhandlereket hozza. Vid: 0:52 }
 end.
 
 
