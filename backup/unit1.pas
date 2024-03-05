@@ -85,8 +85,7 @@ begin
      TreeView1.SetFocus;
   end;
 end;
-{ #todo -oKihon -cUIEvent : 4. video jøn
-A gombok megvannak, csak meg kell irni az eventhandlereket hozza. Vid: 0:52 }
+
 end.
 
 
