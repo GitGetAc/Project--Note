@@ -5,7 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, StdCtrls,
+  Menus;
 
 type
 
@@ -14,7 +15,6 @@ type
   TForm1 = class(TForm)
     AddBtn: TButton;
     AddChildBtn: TButton;
-    ChangeTxtBtn: TButton;
     DelBtn: TButton;
     InsertBtn: TButton;
     Memo1: TMemo;
@@ -23,14 +23,12 @@ type
     TreeView1: TTreeView;
     procedure AddBtnClick(Sender: TObject);
     procedure AddChildBtnClick(Sender: TObject);
-    procedure ChangeTxtBtnClick(Sender: TObject);
     procedure DelBtnClick(Sender: TObject);
     procedure InBtnClick(Sender: TObject);
     procedure InsertBtnClick(Sender: TObject);
     procedure OutBtnClick(Sender: TObject);
     procedure TreeView1Change(Sender: TObject; Node: TTreeNode);
-    procedure TreeView1Changing(Sender: TObject; Node: TTreeNode;
-      var AllowChange: Boolean);
+    procedure TreeView1Changing(Sender: TObject; Node: TTreeNode; var AllowChange: Boolean);
     procedure TreeView1Click(Sender: TObject);
     procedure TreeView1DragDrop(Sender, Source: TObject; X, Y: Integer);
     procedure TreeView1DragOver(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean);
@@ -90,12 +88,6 @@ begin
       Node.Selected := True;
       Node.EditText;
     end;
-end;
-
-procedure TForm1.ChangeTxtBtnClick(Sender: TObject);
-begin
-  if TreeView1.Selected <> nil then
-     NoteOb(TreeView1.Selected.Data).txt := Memo1.Text;
 end;
 
 procedure TForm1.DelBtnClick(Sender: TObject);
