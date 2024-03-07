@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 1074
-  Height = 583
-  Top = 171
+  Left = 843
+  Height = 892
+  Top = 100
   Width = 681
   Anchors = [akTop]
   Caption = 'Form1'
-  ClientHeight = 583
+  ClientHeight = 892
   ClientWidth = 681
   LCLVersion = '3.2.0.0'
   object TreeView1: TTreeView
@@ -13,17 +13,23 @@ object Form1: TForm1
     Height = 486
     Top = 24
     Width = 664
+    DragMode = dmAutomatic
     Font.Height = -16
     Font.Name = 'Consolas'
     Font.Pitch = fpFixed
-    Font.Quality = fqCleartype
+    Font.Quality = fqCleartypeNatural
     ParentFont = False
     TabOrder = 0
+    OnChange = TreeView1Change
+    OnChanging = TreeView1Changing
+    OnClick = TreeView1Click
+    OnDragDrop = TreeView1DragDrop
+    OnDragOver = TreeView1DragOver
   end
   object AddBtn: TButton
     Left = 8
     Height = 22
-    Top = 514
+    Top = 864
     Width = 100
     Caption = 'Add'
     TabOrder = 1
@@ -32,16 +38,16 @@ object Form1: TForm1
   object AddChildBtn: TButton
     Left = 112
     Height = 22
-    Top = 514
+    Top = 864
     Width = 100
     Caption = 'AddChild'
     TabOrder = 2
     OnClick = AddChildBtnClick
   end
   object DelBtn: TButton
-    Left = 216
+    Left = 320
     Height = 22
-    Top = 514
+    Top = 864
     Width = 100
     Caption = 'Delete Node'
     TabOrder = 3
@@ -50,17 +56,44 @@ object Form1: TForm1
   object OutBtn: TButton
     Left = 464
     Height = 22
-    Top = 514
+    Top = 864
     Width = 100
     Caption = '<<< Outdent'
     TabOrder = 4
+    OnClick = OutBtnClick
   end
   object InBtn: TButton
     Left = 572
     Height = 22
-    Top = 514
+    Top = 864
     Width = 100
     Caption = 'Indent >>>'
     TabOrder = 5
+    OnClick = InBtnClick
+  end
+  object ChangeTxtBtn: TButton
+    Left = 572
+    Height = 22
+    Top = 528
+    Width = 100
+    Caption = 'Save Note'
+    TabOrder = 6
+    OnClick = ChangeTxtBtnClick
+  end
+  object InsertBtn: TButton
+    Left = 216
+    Height = 22
+    Top = 864
+    Width = 100
+    Caption = 'InsertNode'
+    TabOrder = 7
+    OnClick = InsertBtnClick
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 322
+    Top = 529
+    Width = 552
+    TabOrder = 8
   end
 end
