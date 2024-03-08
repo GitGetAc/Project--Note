@@ -5,8 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, StdCtrls,
-  Menus, LCLType;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls,
+  StdCtrls, Menus;
 
 type
 
