@@ -1,18 +1,19 @@
 object Form1: TForm1
-  Left = 876
-  Height = 892
-  Top = 214
-  Width = 681
+  Left = 627
+  Height = 900
+  Top = 234
+  Width = 680
   Anchors = [akTop]
   Caption = 'Form1'
-  ClientHeight = 892
-  ClientWidth = 681
+  ClientHeight = 900
+  ClientWidth = 680
+  Menu = MainMenu
   LCLVersion = '3.2.0.0'
   object TreeView1: TTreeView
-    Left = 8
-    Height = 470
-    Top = 40
-    Width = 664
+    Left = 0
+    Height = 510
+    Top = 0
+    Width = 680
     DragMode = dmAutomatic
     Font.Height = -16
     Font.Name = 'Consolas'
@@ -63,7 +64,7 @@ object Form1: TForm1
     OnClick = OutBtnClick
   end
   object InBtn: TButton
-    Left = 572
+    Left = 576
     Height = 22
     Top = 864
     Width = 100
@@ -81,10 +82,41 @@ object Form1: TForm1
     OnClick = InsertBtnClick
   end
   object Memo1: TMemo
-    Left = 8
+    Left = 0
     Height = 322
-    Top = 529
-    Width = 664
+    Top = 520
+    Width = 680
     TabOrder = 7
+  end
+  object MainMenu: TMainMenu
+    Left = 16
+    Top = 16
+    object MenuItemFile: TMenuItem
+      Caption = 'File'
+      object MenuItemNew: TMenuItem
+        Caption = 'New'
+      end
+      object MenuItemOpen: TMenuItem
+        Caption = 'Open ...'
+      end
+      object MenuItemSave: TMenuItem
+        Caption = 'Save'
+      end
+      object MenuItemSaveAs: TMenuItem
+        Caption = 'Save As'
+      end
+      object Separator1: TMenuItem
+        Caption = '-'
+      end
+      object MenuItemOptions: TMenuItem
+        Caption = 'Options'
+      end
+      object Separator2: TMenuItem
+        Caption = '-'
+      end
+      object MenuItemExit: TMenuItem
+        Caption = 'Exit'
+      end
+    end
   end
 end

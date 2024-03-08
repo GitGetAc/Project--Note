@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ComCtrls, StdCtrls,
-  Menus;
+  Menus, LCLType;
 
 type
 
@@ -17,9 +17,19 @@ type
     AddChildBtn: TButton;
     DelBtn: TButton;
     InsertBtn: TButton;
+    MainMenu: TMainMenu;
     Memo1: TMemo;
+    MenuItemOptions: TMenuItem;
+    MenuItemExit: TMenuItem;
+    MenuItemFile: TMenuItem;
+    MenuItemNew: TMenuItem;
+    MenuItemOpen: TMenuItem;
+    MenuItemSave: TMenuItem;
+    MenuItemSaveAs: TMenuItem;
     OutBtn: TButton;
     InBtn: TButton;
+    Separator1: TMenuItem;
+    Separator2: TMenuItem;
     TreeView1: TTreeView;
     procedure AddBtnClick(Sender: TObject);
     procedure AddChildBtnClick(Sender: TObject);
@@ -33,7 +43,7 @@ type
     procedure TreeView1DragDrop(Sender, Source: TObject; X, Y: Integer);
     procedure TreeView1DragOver(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean);
   private
-
+    function ValidSelection: Boolean;
   public
 
   end;
@@ -53,119 +63,148 @@ implementation
 
 { TForm1 }
 
+function TForm1.ValidSelection: Boolean;
+// !! This tests that a valid node selection has been made.
+begin
+    if TreeView1.Items.Count = 0 then
+    begin
+        MessageDlg('There are no items in the list!', mtInformation, [mbOk], 0);
+        result := false;
+    end
+    else if TreeView1.Selected = nil then
+    begin
+        MessageDlg('You must select an item!', mtInformation, [mbOk], 0);
+        result := false;
+    end
+    else
+        result := True;
+end;
+
 procedure TForm1.AddBtnClick(Sender: TObject);
 
 var
-  Node : TTreeNode;
-  note : NoteOb;
+    Node: TTreeNode;
+    note: NoteOb;
 begin
-  note := NoteOb.Create;
-  note.txt := Memo1.Text;
-  Node := TreeView1.Items.AddObject(TreeView1.Selected, 'NewItem', note);
-  Node.Selected := True;
-  Node.EditText;
+    note := NoteOb.create;
+    note.txt := Memo1.Text;
+    Node := TreeView1.Items.AddObject(TreeView1.Selected, 'NewItem', note);
+    Node.Selected := True;
+    Node.EditText;
+    SetFocusedControl(Memo1);
 end;
 
 procedure TForm1.AddChildBtnClick(Sender: TObject);
 //Add an item indented 1 level in below current item
 var
-  Node : TTreeNode;
-  note : NoteOb;
+    Node: TTreeNode;
+    note: NoteOb;
 begin
-  if Treeview1.Items.Count = 0 then //If treeview is empty, just Add item
-     AddBtnClick(Sender)
-  else
-    begin   //Save any edit-changes in current node
-      if TreeView1.Selected.EditText then
-         Treeview1.Selected.EndEdit(false);
-      //Then add a child
-      note := NoteOb.Create;
-      note.txt := Memo1.Text;
-      Node := TreeView1.Items.AddChildObject(TreeView1.Selected, 'NewItem', note);
-      //Expand to show new node if necessary
-      if Node.Level > 0 then
-         Node.Parent.Expanded := True;
-      Node.Selected := True;
-      Node.EditText;
+    if TreeView1.Items.Count = 0 then // if TreeView is empty, just Add item
+        AddBtnClick(Sender)
+    else if ValidSelection then
+    begin // else add child item
+        note := NoteOb.create;
+        note.txt := Memo1.Text;
+        Node := TreeView1.Items.AddChildObject(TreeView1.Selected,
+          'NewItem', note);
+        // expand to show new node if necessary
+        if Node.Level > 0 then
+            Node.Parent.Expanded := True;
+        Node.Selected := True;
+        Node.EditText;
+        SetFocusedControl(Memo1);
     end;
 end;
 
 procedure TForm1.DelBtnClick(Sender: TObject);
 //Delete selected node
 var
-  index : integer;
-  ok : Boolean;
+    index: Integer;
+    ok: Boolean;
 begin
-  ok := True;
-  //Make sure there is something to delete
-  if TreeView1.Items.Count = 0 then
-     MessageDlg('There are no items in the list!', mtInformation, [mbOk], 0)
-  else
+    ok := True;
+    if ValidSelection then
     begin
-    if TreeView1.Selected.HasChildren then
-       if MessageDlg('There are items beneath the selected item.'#10'Delete them all?', mtInformation, [mbYes, mbNo], 0) = mrNo then
-          ok := False;
-    if ok then
-       begin
-         //Set index to 1 above the node being deleted
-         index  := TreeView1.Selected.AbsoluteIndex - 1;
-         //Delete the node
-         TreeView1.Selected.Delete;
-         //Then, if there is still any items in the TreeView, select the item at position 'index'
-         if index >= 0 then
-            TreeView1.Items[index].Selected := True;
-         //And set the fokus back to TreeView
-       end;
-       TreeView1.SetFocus;
+        if TreeView1.Selected.HasChildren then
+            if MessageDlg
+              ('There are items beneath the selected item.'#10'Delete them all?',
+              mtInformation, [mbYes, mbNo], 0) = mrNo then
+                ok := false;
+        if ok then
+        begin
+            // set index to 1 above the node being deleted
+            index := TreeView1.Selected.AbsoluteIndex - 1;
+            // delete the node
+            TreeView1.Selected.Delete;
+            // then, if there is still any items in the TreeView,
+            // select the item at position 'index'
+            if index >= 0 then
+                TreeView1.Items[index].Selected := True;
+            // and set the focus back to the TreeView
+        end; { if ok }
+        TreeView1.SetFocus;
     end;
 end;
 
 procedure TForm1.InBtnClick(Sender: TObject);
 //Indent 1 level
 var
-  Node : TTreeNode;
-  sibIndex : Integer;
+    Node: TTreeNode;
+    sibindex: Integer;
 begin
-  if not (Treeview1.Items.Count = 0) then //Make sure it is not empty
-     begin
-       Node := TreeView1.Selected;
-       sibIndex := Node.GetPrevSibling.AbsoluteIndex;
-       if sibIndex = -1 then
-          sibIndex := Node.GetNextSibling.AbsoluteIndex;
-       if sibIndex = -1 then
-          MessageDlg('There is nothing to indent this item beneath!', mtInformation, [mbOk], 0)
-       else
-         TreeView1.Selected.MoveTo(TreeView1.Items.Item[sibIndex], naAddChild);
-     end;
-  Treeview1.SetFocus;
+    if ValidSelection then // make sure it's not empty
+    begin
+        Node := TreeView1.Selected;
+        sibindex := Node.GetPrevSibling.AbsoluteIndex;
+        if sibindex = -1 then
+            sibindex := Node.GetNextSibling.AbsoluteIndex;
+        if sibindex = -1 then
+            MessageDlg('There is nothing to indent this item beneath!',
+              mtInformation, [mbOk], 0)
+        else
+            TreeView1.Selected.MoveTo(TreeView1.Items.Item[sibindex],
+              naAddChild);
+    end;
+    TreeView1.SetFocus;
 end;
 
 procedure TForm1.InsertBtnClick(Sender: TObject);
-// insert a new item at same level above current item
+// Insert a new item at same level above current item
 var
-  Node : TTreeNode;
+    Node: TTreeNode;
+    note: NoteOb;
 begin
-  Node := TreeView1.Items.Insert(TreeView1.Selected, 'NewItem');
-  Node.Selected := True;
-  Node.EditText;
+    if TreeView1.Items.Count = 0 then // if TreeView is empty, just Add item
+        AddBtnClick(Sender)
+    else if ValidSelection then
+    begin
+        note := NoteOb.create;
+        note.txt := Memo1.Text;
+        Node := TreeView1.Items.InsertObject(TreeView1.Selected, 'NewItem', note);
+        Node.Selected := True;
+        Node.EditText;
+        SetFocusedControl(Memo1);
+    end;
 end;
 
 procedure TForm1.OutBtnClick(Sender: TObject);
 //Outdent selected item
 var
-  Node : TTreeNode;
-  parentIndex : Integer;
+    Node: TTreeNode;
+    parentindex: Integer;
 begin
-  if not (TreeView1.Items.Count = 0) then //Make sure it is not empty
-     begin
-       Node := TreeView1.Selected;
-       parentIndex := Node.Parent.AbsoluteIndex;
-       if parentIndex = -1 then //!This does not run (Acces violation instead)
-          MessageDlg('This item is already fully outdented!', mtInformation, [mbOk], 0)
-       else
-         TreeView1.Selected.MoveTo(TreeView1.Items.Item[parentIndex], naAdd);
-     end;
-     TreeView1.SetFocus;
+    if ValidSelection then // make sure it's not empty
+    begin
+        Node := TreeView1.Selected;
+        parentindex := Node.Parent.AbsoluteIndex;
+        if parentindex = -1 then
+            MessageDlg('This item is already fully outdented!', mtInformation,
+              [mbOk], 0)
+        else
+            TreeView1.Selected.MoveTo(TreeView1.Items.Item[parentindex], naAdd);
+    end;
+    TreeView1.SetFocus;
 end;
 
 procedure TForm1.TreeView1Click(Sender: TObject);
@@ -176,23 +215,24 @@ end;
 
 procedure TForm1.TreeView1DragDrop(Sender, Source: TObject; X, Y: Integer);
 var
-  Node : TTreeNode;
-  Attachmode : TNodeAttachMode;
-  HT : THitTests;
+  tv    : TTreeView;
+  Node  : TTreeNode;
 begin
-  if TreeView1.Selected = nil then Exit;
-  HT := TreeView1.GetHitTestInfoAt(X, Y);
-  Node := TreeView1.GetNodeAt(X, Y);
-  if  (HT - [htOnItem, htOnIcon, htNowhere, htOnIndent] <> HT) then
-     begin
-       if (htOnItem in HT) or (htOnIcon in HT) then
-          AttachMode := naAddChild
-       else if htNowhere in HT then
-          AttachMode := naAdd
-       else if htOnIndent in HT then
-          AttachMode := naInsert;
-       TreeView1.Selected.MoveTo(Node, AttachMode);
-     end;
+  tv := Sender as TTreeView;    { Sender is TreeView where the data is being dropped  }
+  Node := tv.GetNodeAt(x,y);   	{ x,y are drop coordinates (relative to the Sender)   }
+                                {   since Sender is TreeView we can evaluate          }
+                                {   a tree at the X,Y coordinates                     }
+
+  if Source = Sender then begin         { drop is happening within a TreeView   }
+    if Assigned(tv.Selected) and             {  check if any node has been selected  }
+      (Node <> tv.Selected) then            {   and we're dropping to another node  }
+    begin
+      if Node <> nil then
+        tv.Selected.MoveTo(Node, naAddChild) { complete the drop operation, by moving the selectede node }
+      else
+        tv.Selected.MoveTo(Node, naAdd); { complete the drop operation, by moving in root of a TreeView }
+    end;
+  end;
 end;
 
 procedure TForm1.TreeView1DragOver(Sender, Source: TObject; X, Y: Integer; State: TDragState; var Accept: Boolean);
@@ -212,6 +252,3 @@ begin
   if Treeview1.Selected <> nil then NoteOb(Treeview1.Selected.Data).txt := Memo1.Text;
 end;
 end.
-
-
-
