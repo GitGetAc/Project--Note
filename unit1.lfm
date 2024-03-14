@@ -98,9 +98,11 @@ object Form1: TForm1
       end
       object MenuItemOpen: TMenuItem
         Caption = 'Open ...'
+        OnClick = MenuItemOpenClick
       end
       object MenuItemSave: TMenuItem
         Caption = 'Save'
+        OnClick = MenuItemSaveClick
       end
       object MenuItemSaveAs: TMenuItem
         Caption = 'Save As'
@@ -116,6 +118,7 @@ object Form1: TForm1
       end
       object MenuItemExit: TMenuItem
         Caption = 'Exit'
+        OnClick = MenuItemExitClick
       end
     end
   end
