@@ -30,8 +30,10 @@ type
     MenuItemOpen: TMenuItem;
     MenuItemSave: TMenuItem;
     MenuItemSaveAs: TMenuItem;
+    OpenDialog1: TOpenDialog;
     OutBtn: TButton;
     InBtn: TButton;
+    SaveDialog1: TSaveDialog;
     Separator1: TMenuItem;
     Separator2: TMenuItem;
     TreeView1: TTreeView;
@@ -41,8 +43,10 @@ type
     procedure InBtnClick(Sender: TObject);
     procedure InsertBtnClick(Sender: TObject);
     procedure MenuItemExitClick(Sender: TObject);
+    procedure MenuItemNewClick(Sender: TObject);
     procedure MenuItemOpenClick(Sender: TObject);
     procedure MenuItemSaveClick(Sender: TObject);
+    procedure MenuItemSaveAsClick(Sender: TObject);
     procedure OutBtnClick(Sender: TObject);
     procedure TreeView1Change(Sender: TObject; Node: TTreeNode);
     procedure TreeView1Changing(Sender: TObject; Node: TTreeNode; var AllowChange: Boolean);
@@ -53,8 +57,10 @@ type
     function ReadChars(numchars: Integer; fs: TFileStream): string;
     procedure AddNode(LastNode: TTreeNode; nodelevel: Integer; lbl: string; note: NoteOb);
     function ValidSelection: Boolean;
+    procedure DoSave(fn: string);
+    procedure DoLoad(fn: string);
   public
-
+    function ConfirmFileSave(FileName: string): Boolean;
   end;
 
 var
@@ -81,6 +87,50 @@ begin
     end
     else
         result := True;
+end;
+
+procedure TForm1.DoSave(fn: string);
+var
+    fs: TFileStream;
+    lbl: string[255];
+    s: string;
+    i, stri, slen, NumOfNodes, nodelevel: Integer;
+begin
+    fs := TFileStream.Create(fn, fmCreate);
+    try // ...finally
+        try // ...except
+            // WRITE: Num of nodes in TreeView
+            NumOfNodes := TreeView1.Items.Count;
+            fs.WriteBuffer(NumOfNodes, sizeof(NumOfNodes));
+            // WRITE: the labels and data of the nodes
+            for i := 0 to TreeView1.Items.Count - 1 do
+            begin
+                // WRITE: node label
+                lbl := TreeView1.Items[i].Text;
+                // !! NEED to supply LEVEL too
+                fs.WriteBuffer(lbl, sizeof(lbl));
+
+                // WRITE: Node level
+                nodelevel := TreeView1.Items[i].Level;
+                fs.WriteBuffer(nodelevel, sizeof(nodelevel));
+
+                // assign txt data to String S
+                s := NoteOb(TreeView1.Items[i].Data).txt;
+                slen := length(s);
+                // WRITE: Length of String S
+                fs.WriteBuffer(slen, sizeof(slen));
+                // WRITE: String S one char at a time.
+
+                for stri := 1 to slen do
+                    fs.WriteBuffer(s[stri], sizeof(Char));
+            end;
+        except
+            on Exception do
+                ShowMessage('Stream could not be written! ');
+        end;
+    finally
+        fs.Free;
+    end;
 end;
 
 procedure TForm1.AddBtnClick(Sender: TObject);
@@ -229,8 +279,56 @@ begin
     result := s;
 end;
 
+///////////////////////////////////////////////////////////////////////////
+
+procedure TForm1.MenuItemNewClick(Sender: TObject);
+begin
+    TreeView1.Items.Clear;
+    TreeView1.Repaint;
+    Memo1.Text := '';
+    OpenDialog1.FileName := '*.nb';
+    Caption := '[ Untitled ]'
+end;
+
 procedure TForm1.MenuItemOpenClick(Sender: TObject);
-// File Open
+begin
+    with OpenDialog1 do
+        if Execute then
+            if FileExists(FileName) Then
+                DoLoad(FileName)
+            else
+                MessageDlg('Error: Cannot find the file: ' + FileName, mtInformation, [mbOk], 0);
+end;
+
+procedure TForm1.MenuItemSaveClick(Sender: TObject);
+begin
+    if ((OpenDialog1.FileName = '') or (OpenDialog1.FileName = '*.nb')) then
+        MenuItemSaveAsClick(Sender)
+    else
+        DoSave(OpenDialog1.FileName);
+end;
+
+procedure TForm1.MenuItemSaveAsClick(Sender: TObject);
+var
+    SaveFile: Boolean;
+begin
+    SaveFile := True;
+    with SaveDialog1 do
+        if Execute then
+        begin
+            if FileExists(FileName) then
+                SaveFile := ConfirmFileSave(FileName);
+            if SaveFile then
+            begin
+                DoSave(FileName);
+                OpenDialog1.FileName := FileName;
+                Caption := ExtractFileName(FileName);
+            end;
+        end;
+end;
+
+procedure TForm1.DoLoad(fn: string);
+// File Open (reconstruct tree with notes from saved data)
 var
     fs: TFileStream;
     i, slen, NumOfNodes, nodelevel: Integer;
@@ -240,9 +338,10 @@ var
     LastNode: TTreeNode;
 begin
     LastNode := nil;
-    fs := TFileStream.create('Notes/Test.nb', fmOpenRead);
+    fs := TFileStream.Create(fn, fmOpenRead);
     TreeView1.Items.Clear;
     TreeView1.Repaint;
+
     try // ...finally
         try // ...except
             // READ: Number of Nodes
@@ -258,8 +357,8 @@ begin
                 s := '';
                 // READ: and Construct String S from them
                 s := ReadChars(slen, fs);
-                // CREATE NoteOb, assign String S to its text field
-                note := NoteOb.create;
+                // CREATE noteob, assign String S to its text field
+                note := NoteOb.Create;
                 note.txt := s;
                 AddNode(LastNode, nodelevel, lbl, note);
                 LastNode := TreeView1.Items[TreeView1.Items.Count - 1];
@@ -272,49 +371,15 @@ begin
     finally
         fs.Free;
     end;
+    Caption := ExtractFileName(fn);
 end;
-
-procedure TForm1.MenuItemSaveClick(Sender: TObject);
-// File Save
-var
-    fs: TFileStream;
-    lbl: string[255];
-    s: string;
-    i, stri, slen, NumOfNodes, nodelevel: Integer;
+///////////////////////////////////////////////////////////////////////////
+function TForm1.ConfirmFileSave(FileName: string): Boolean;
 begin
-    fs := TFileStream.create('Notes/Test.nb', fmCreate);
-    try // ...finally
-        try // ...except
-            // WRITE: Num of nodes in TreeView
-            NumOfNodes := TreeView1.Items.Count;
-            fs.WriteBuffer(NumOfNodes, sizeof(NumOfNodes));
-            // WRITE: the labels and data of the nodes
-            for i := 0 to NumOfNodes - 1 do
-            begin
-                // WRITE: node label
-                lbl := TreeView1.Items[i].Text;
-                fs.WriteBuffer(lbl, sizeof(lbl));
-
-                // WRITE: Node level
-                nodelevel := TreeView1.Items[i].Level;
-                fs.WriteBuffer(nodelevel, sizeof(nodelevel));
-
-                // assign txt data to String S
-                s := NoteOb(TreeView1.Items[i].Data).txt;
-                slen := length(s);
-                // WRITE: Length of String S
-                fs.WriteBuffer(slen, sizeof(slen));
-
-                for stri := 1 to slen do
-                    fs.WriteBuffer(s[stri], sizeof(char));
-            end;
-        except
-            on Exception do
-                ShowMessage('Stream could not be written! ');
-        end;
-    finally
-        fs.Free;
-    end;
+    if MessageDlg(FileName + ' already exists. Save anyway?', mtConfirmation, mbYesNoCancel, 0) = mrYes then
+        ConfirmFileSave := True
+    else
+        ConfirmFileSave := false;
 end;
 
 procedure TForm1.OutBtnClick(Sender: TObject);
@@ -382,6 +447,3 @@ begin
 end;
 end.
 
-
-//Without text formatting shortcuts (TMemo does not have SelAttributes property, TMemo needs to be exchanged with TRichMemo)
-//MenuItem "NEW" must be implemented
