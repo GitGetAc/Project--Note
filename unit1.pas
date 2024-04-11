@@ -264,16 +264,16 @@ begin
     end;
 end;
 
-function TForm1.ReadChars(numchars: Integer; fs: TFileStream): string;
+function TForm1.ReadChars(numchars: Integer; fs: TFileStream): String;
 // construct a string by reading in chars from a stream
 var
     i: Integer;
-    c: char;
-    s: string;
+    c: Char;
+    s: String;
 begin
     for i := 1 to numchars do
     begin
-        fs.ReadBuffer(c, sizeof(c));
+        fs.Read(c, sizeof(c));
         s := s + c;
     end;
     result := s;
@@ -345,15 +345,15 @@ begin
     try // ...finally
         try // ...except
             // READ: Number of Nodes
-            fs.ReadBuffer(NumOfNodes, sizeof(NumOfNodes));
+            fs.Read(NumOfNodes, sizeof(NumOfNodes));
             for i := 0 to NumOfNodes - 1 do
             begin
                 // READ: Node Label
-                fs.ReadBuffer(lbl, sizeof(lbl));
+                fs.Read(lbl, sizeof(lbl));
                 // READ: Node level
-                fs.ReadBuffer(nodelevel, sizeof(nodelevel));
+                fs.Read(nodelevel, sizeof(nodelevel));
                 // READ: Length of String data
-                fs.ReadBuffer(slen, sizeof(slen));
+                fs.Read(slen, sizeof(slen));
                 s := '';
                 // READ: and Construct String S from them
                 s := ReadChars(slen, fs);
@@ -447,3 +447,9 @@ begin
 end;
 end.
 
+//////////////////////////////////////////////////////////
+//Øtletek: https://lazplanet.gitlab.io/2013/06/how-to-create-basic-paint-software.html#more
+//https://lazplanet.gitlab.io/2013/12/create-rich-text-editor-for-yourself.html
+//https://wiki.lazarus.freepascal.org/RichMemo
+//https://lazplanet.gitlab.io/2020/05/cross-compile-on-lazarus.html#more
+//Aztan megprobaljuk a richeditet hozzaadni
