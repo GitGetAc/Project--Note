@@ -446,10 +446,3 @@ begin
   if Treeview1.Selected <> nil then NoteOb(Treeview1.Selected.Data).txt := Memo1.Text;
 end;
 end.
-
-//////////////////////////////////////////////////////////
-//Øtletek: https://lazplanet.gitlab.io/2013/06/how-to-create-basic-paint-software.html#more
-//https://lazplanet.gitlab.io/2013/12/create-rich-text-editor-for-yourself.html
-//https://wiki.lazarus.freepascal.org/RichMemo
-//https://lazplanet.gitlab.io/2020/05/cross-compile-on-lazarus.html#more
-//Aztan megprobaljuk a richeditet hozzaadni
