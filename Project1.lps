@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="28" Y="20"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="139"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -20,18 +20,19 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="165"/>
-        <CursorPos X="59" Y="204"/>
-        <UsageCount Value="103"/>
+        <TopLine Value="510"/>
+        <CursorPos X="84" Y="553"/>
+        <UsageCount Value="139"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.lfm"/>
         <HasResources Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="106"/>
-        <CursorPos X="71" Y="130"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="67"/>
+        <CursorPos X="7" Y="96"/>
+        <UsageCount Value="60"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
@@ -39,34 +40,34 @@
         <UnitName Value="Ellipses"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="416"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2279"/>
         <CursorPos Y="2305"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\include\buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="21"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\include\buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="144"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5406"/>
         <CursorPos Y="5431"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\lclmessageglue.pas"/>
@@ -74,14 +75,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="83"/>
         <CursorPos Y="124"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\interfaces\win32\win32callback.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1765"/>
         <CursorPos X="23" Y="1788"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\interfaces\win32\win32wsforms.pp"/>
@@ -89,7 +90,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="388"/>
         <CursorPos Y="412"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\interfaces\win32\win32wsstdctrls.pp"/>
@@ -97,28 +98,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1950"/>
         <CursorPos Y="1973"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1402"/>
         <CursorPos Y="1426"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\interfaces\win32\win32object.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="379"/>
         <CursorPos Y="413"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\include\treeview.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1100"/>
         <CursorPos X="59" Y="1239"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\interfaces\gtk2\gtk2proc.pp"/>
@@ -126,21 +127,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="867"/>
         <CursorPos X="37" Y="891"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\interfaces\gtk2\gtk2lclintfh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="77" Y="38"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\fpc\3.2.2\source\rtl\inc\objpash.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="176"/>
         <CursorPos X="45" Y="197"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\customtimer.pas"/>
@@ -148,7 +149,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="129"/>
         <CursorPos Y="155"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\menus.pp"/>
@@ -156,7 +157,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="411"/>
         <CursorPos X="25" Y="429"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\comctrls.pp"/>
@@ -164,14 +165,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="42" Y="41"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\interfaces\win32\win32winapi.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1736"/>
         <CursorPos X="3" Y="1760"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\lcl\interfaces\win32\win32wsmenus.pp"/>
@@ -179,28 +180,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="804"/>
         <CursorPos X="34" Y="810"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\PortableProgs\Laz64Installed\fpc\3.2.2\source\rtl\objpas\sysutils\filutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="124"/>
         <CursorPos X="43" Y="152"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\PortableProgs\Laz64Installed\lcl\include\menuitem.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="271"/>
         <CursorPos Y="296"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\PortableProgs\Laz64Installed\lcl\interfaces\win32\win32callback.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2782"/>
         <CursorPos Y="2807"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\PortableProgs\Laz64Installed\lcl\interfaces\win32\win32wsforms.pp"/>
@@ -208,31 +209,188 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="389"/>
         <CursorPos Y="412"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\PortableProgs\Laz64Installed\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1402"/>
         <CursorPos Y="1426"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\PortableProgs\Laz64Installed\lcl\include\treeview.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1214"/>
         <CursorPos Y="1238"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="Project1.lpi"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="XML"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\..\..\PortableProgs\Laz64Installed\lcl\include\treeview.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1707"/>
+        <CursorPos Y="1736"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\PortableProgs\Laz64Installed\fpc\3.2.2\source\rtl\win64\classes.pp"/>
+        <UnitName Value="Classes"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\PortableProgs\Laz64Installed\fpc\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="43"/>
+        <CursorPos X="3" Y="72"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\PortableProgs\Laz64Installed\lcl\comctrls.pp"/>
+        <UnitName Value="ComCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3125"/>
+        <CursorPos X="3" Y="2986"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\..\..\..\..\AppData\Local\lazarus\onlinepackagemanager\packages\richmemo\richmemo.pas"/>
+        <UnitName Value="RichMemo"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="775"/>
+        <CursorPos X="17" Y="335"/>
+        <UsageCount Value="11"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="54" Column="73" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="475" Column="3" TopLine="463"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="476" Column="20" TopLine="447"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="484" Column="7" TopLine="448"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="479" Column="95" TopLine="455"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="384" Column="35" TopLine="360"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="485" Column="106" TopLine="464"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="384" Column="41" TopLine="355"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="65" Column="22" TopLine="45"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="478" Column="10" TopLine="458"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="485" Column="37" TopLine="456"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="486" Column="60" TopLine="456"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="485" Column="61" TopLine="456"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="487" Column="60" TopLine="458"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="486" Column="40" TopLine="458"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="56" Column="15" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="486" Column="42" TopLine="473"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="37" Column="52" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="59" Column="15" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="506" Column="14" TopLine="475"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="422" Column="54" TopLine="394"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="491" Column="68" TopLine="453"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="492" Column="68" TopLine="454"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="493" Column="68" TopLine="455"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="517" Column="64" TopLine="482"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="518" Column="64" TopLine="483"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="519" Column="64" TopLine="484"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="501" Column="103" TopLine="485"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="541" Column="64" TopLine="505"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="559" Column="3" TopLine="530"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

@@ -1,36 +1,38 @@
 object Form1: TForm1
-  Left = 1839
-  Height = 900
-  Top = 452
-  Width = 680
-  Anchors = [akTop]
+  Left = 725
+  Height = 1005
+  Top = 156
+  Width = 881
+  Anchors = []
   Caption = 'Form1'
-  ClientHeight = 900
-  ClientWidth = 680
+  ClientHeight = 1005
+  ClientWidth = 881
   Menu = MainMenu
+  OnCreate = FormCreate
   LCLVersion = '3.2.0.0'
   object TreeView1: TTreeView
-    Left = 0
-    Height = 510
-    Top = 0
-    Width = 680
+    Left = 8
+    Height = 534
+    Top = 6
+    Width = 864
+    Anchors = [akTop, akLeft, akRight]
     DragMode = dmAutomatic
-    Font.Height = -16
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -15
     Font.Name = 'Consolas'
     Font.Pitch = fpFixed
-    Font.Quality = fqCleartypeNatural
+    Font.Quality = fqDraft
     ParentFont = False
     TabOrder = 0
     OnChange = TreeView1Change
     OnChanging = TreeView1Changing
-    OnClick = TreeView1Click
     OnDragDrop = TreeView1DragDrop
     OnDragOver = TreeView1DragOver
   end
   object AddBtn: TButton
     Left = 8
     Height = 22
-    Top = 864
+    Top = 968
     Width = 100
     Caption = 'Add'
     TabOrder = 1
@@ -39,7 +41,7 @@ object Form1: TForm1
   object AddChildBtn: TButton
     Left = 112
     Height = 22
-    Top = 864
+    Top = 968
     Width = 100
     Caption = 'AddChild'
     TabOrder = 2
@@ -48,25 +50,25 @@ object Form1: TForm1
   object DelBtn: TButton
     Left = 320
     Height = 22
-    Top = 864
+    Top = 968
     Width = 100
     Caption = 'Delete Node'
     TabOrder = 3
     OnClick = DelBtnClick
   end
   object OutBtn: TButton
-    Left = 464
+    Left = 656
     Height = 22
-    Top = 864
+    Top = 968
     Width = 100
     Caption = '<<< Outdent'
     TabOrder = 4
     OnClick = OutBtnClick
   end
   object InBtn: TButton
-    Left = 576
+    Left = 772
     Height = 22
-    Top = 864
+    Top = 968
     Width = 100
     Caption = 'Indent >>>'
     TabOrder = 5
@@ -75,22 +77,117 @@ object Form1: TForm1
   object InsertBtn: TButton
     Left = 216
     Height = 22
-    Top = 864
+    Top = 968
     Width = 100
     Caption = 'InsertNode'
     TabOrder = 6
     OnClick = InsertBtnClick
   end
-  object Memo1: TMemo
-    Left = 0
-    Height = 322
-    Top = 520
-    Width = 680
+  object RichMemo1: TRichMemo
+    Left = 8
+    Height = 338
+    Top = 624
+    Width = 864
+    Anchors = [akTop, akLeft, akRight]
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Calibri'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    HideSelection = False
+    Lines.Strings = (
+      'RichText'
+    )
+    OnMouseDown = RichMemo1MouseDown
+    ParentFont = False
+    Rtf = '{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Segoe UI;}}'#13#10'{\colortbl ;\red0\green0\blue0;}'#13#10'{\*\generator Riched20 10.0.22621}\viewkind4\uc1 '#13#10'\pard\cf1\ul\b\f0\fs20 RichText\par'#13#10'\cf0\ulnone\b0\f1\fs18\par'#13#10'}'#13#10#0
+    ScrollBars = ssAutoVertical
     TabOrder = 7
+    ZoomFactor = 1
+  end
+  object BoldTextBtn: TButton
+    Left = 8
+    Height = 22
+    Top = 592
+    Width = 100
+    Caption = 'Bold'
+    TabOrder = 8
+    OnClick = btnBoldClick
+  end
+  object BoldTextBtn1: TButton
+    Left = 120
+    Height = 22
+    Top = 592
+    Width = 100
+    Caption = 'Italic'
+    TabOrder = 9
+    OnClick = btnItalicClick
+  end
+  object BoldTextBtn2: TButton
+    Left = 232
+    Height = 22
+    Top = 592
+    Width = 100
+    Caption = 'Underline'
+    TabOrder = 10
+    OnClick = btnUnderlineClick
+  end
+  object BoldTextBtn3: TButton
+    Left = 344
+    Height = 22
+    Top = 592
+    Width = 100
+    Caption = 'StrikeOut'
+    TabOrder = 11
+    OnClick = btnStrikeOutClick
+  end
+  object FontLabel: TLabel
+    Left = 462
+    Height = 15
+    Top = 595
+    Width = 27
+    Caption = 'Font:'
+  end
+  object SizeLabel: TLabel
+    Left = 688
+    Height = 15
+    Top = 595
+    Width = 23
+    Caption = 'Size:'
+  end
+  object cboFont: TComboBox
+    Left = 504
+    Height = 23
+    Top = 591
+    Width = 176
+    ItemHeight = 15
+    TabOrder = 12
+    OnSelect = cboFontSelect
+  end
+  object cboFontSize: TComboBox
+    Left = 736
+    Height = 23
+    Top = 591
+    Width = 64
+    ItemHeight = 15
+    ItemIndex = 1
+    Items.Strings = (
+      '8'
+      '10'
+      '12'
+      '14'
+      '16'
+      '18'
+      '26'
+      '36'
+    )
+    TabOrder = 13
+    Text = '10'
+    OnSelect = cboFontSizeSelect
   end
   object MainMenu: TMainMenu
-    Left = 16
-    Top = 16
+    Left = 64
+    Top = 88
     object MenuItemFile: TMenuItem
       Caption = 'File'
       object MenuItemNew: TMenuItem
@@ -127,13 +224,13 @@ object Form1: TForm1
   object OpenDialog1: TOpenDialog
     DefaultExt = '.nb'
     Filter = 'NoteBook Files (*.nb)|*.nb'
-    Left = 96
-    Top = 16
+    Left = 160
+    Top = 88
   end
   object SaveDialog1: TSaveDialog
     DefaultExt = '.nb'
     Filter = 'NoteBook Files (*.nb)|*.nb'
-    Left = 176
-    Top = 16
+    Left = 256
+    Top = 88
   end
 end
